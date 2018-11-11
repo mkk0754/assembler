@@ -9,7 +9,7 @@ int instr_trans(char *op, char *args, char* mcode)
 	}
 
 
-	strcpy(mcode, "AB CD EF");
+	//strcpy(mcode, "AB CD EF");
 
 	/********************************/
     /*  							*/
@@ -30,31 +30,46 @@ int instr_trans(char *op, char *args, char* mcode)
 }
 int move(char *args, char *mcode){
 	char left[255] ={ NULL };
-	char *right[255] ={ NULL };
-	char *ptr_l[255] ={ NULL };
-	char *ptr_r[255] ={ NULL };
-
+	char right[255] ={ NULL };
+	char ptr_l[255] ={ NULL };
+	char ptr_r[255] ={ NULL };
+	int left_lexem;
+	int right_lexem;
+	
 	left = strtok(args, ",");
 	strcpy(right,args);
-	
-	strcpy(ptr_l,left);
-	strcpy(ptr_r,right);
-	if(ptr_l = strchr(ptr_l,'-') || ptr_l = strchr(ptr_l,'(')){
-	strcpy(mcode, "8b");
-	}
-	else if(ptr_l = strchr(ptr_l, '%')){
-		if(ptr_r = strchr(ptr_r, '%'))
-			strcpy(mcode, "89");
+	left_lexem = lex(left);
+	right_lexem = lex(right);
+	if(left_lexem == reg){
+		if(left[2] == 'a');
+			strcpy(mcode, "b8");
 		else
-			strcpy(mcode, "a3");
+			strcpy(mcode,"8b");
+	}else if(left_lexem == mem ){
+		if(right[2] =='a')
+			strcpy(mcode, "a1");
+		else
+			strcpy(mcode, "8b");
+	}else if(left_lexem == immediate &&right_lexem == reg){
+		if(strcmp(right,"%eax"))
+			strcpy(mcode, "b8");
+		else if(strcmp(right, "%ecx"))
+			strcpy(mcode, "b9");
+		else if(strcmp(right, "%edx"))
+			strcpy(mcode, "bA");
+		else if(strcmp(right, "%ebx"))
+			strcpy(mcode, "bB");
+		else if(strcmp(right, "%esp"))
+                        strcpy(mcode, "bC");
+		else if(strcmp(right, "%ebp"))
+                        strcpy(mcode, "bD");
+		else if(strcmp(right, "%esi"))
+                        strcpy(mcode, "bE");
+		else if(strcmp(right, "%edi"))
+                        strcpy(mcode, "bF");
 	}
-	else if(ptr_l = strchr(ptr_l,'$')){
-		
-	}
-	else{
-		strcpy(mcode, "a1");
-	}
-	strcpy(mcode, "b8");
+	else
+		strcpy(mcode, "error");
 	
 	return 0;	
 }

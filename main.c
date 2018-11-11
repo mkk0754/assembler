@@ -6,7 +6,7 @@ int main(int argc, char* argv[])
 	char ofname[20];
 	char op[4];
 	char args[256]; 
-	char* mcode;  
+	char mcode[256];  
 
 	if(argc < 3){
 		printf("Usage: myas input_file output_file\n");
