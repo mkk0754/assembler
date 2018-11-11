@@ -2,8 +2,12 @@
 #include<string.h>
 #include<stdlib.h>
 
-const int mem = 60;
-const int reg = 61;
-const int immediate = 62;
-const int destination = 63;
+#define mem  60
+#define reg  61
+#define immediate  62
 // complete this header file
+
+//int is_valid(char*, char*);
+//int lex(char*);
+//int instr_trans(char*, char*, char*);
+//int move(char*, char*);

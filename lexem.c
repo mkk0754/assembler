@@ -7,5 +7,6 @@ int lex(char *lexem){
 	case '-':
 	case '0':return mem;break;
 	case '$':return immediate;break;
+	default :return 0;
 	}
 }

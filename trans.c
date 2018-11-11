@@ -2,6 +2,7 @@
 
 int instr_trans(char *op, char *args, char* mcode)
 {
+	
 	// check syntax 
 	if(!is_valid(op, args)){
 		printf("Error: %s %s is not valid\n", op, args);
@@ -16,32 +17,28 @@ int instr_trans(char *op, char *args, char* mcode)
 	/*    generate machine code     */
     /*  							*/
 	/********************************/
-	switch(op){
-	case "mov":move(args,mcode);break;
-	case "push":break;
-	case "add":break;
-	case "pop":break;
-	case "sub":break;
-	case "call":break;
-	default:break;
-	}
+	if(strcpy(op,"mov"))
+		move(args,mcode);
+	else if(strcpy(op,"push")){}
+	else if(strcpy(op,"add")){}
+	else if(strcpy(op,"pop")){}
+	else if(strcpy(op,"sub")){}
+	else if(strcpy(op,"call")){}
 	
 	return 1;	
 }
 int move(char *args, char *mcode){
-	char left[255] ={ NULL };
-	char right[255] ={ NULL };
-	char ptr_l[255] ={ NULL };
-	char ptr_r[255] ={ NULL };
+	char *left;
+	char *right;
 	int left_lexem;
 	int right_lexem;
 	
 	left = strtok(args, ",");
-	strcpy(right,args);
+	right = strtok(NULL, ",");
 	left_lexem = lex(left);
 	right_lexem = lex(right);
 	if(left_lexem == reg){
-		if(left[2] == 'a');
+		if(left[2] == 'a')
 			strcpy(mcode, "b8");
 		else
 			strcpy(mcode,"8b");

@@ -1,13 +1,14 @@
 # Write this Makefile
-all : main trans check lexem  mayas
-
-main : main.c
-	gcc -c main.c
-trans : trans.c
-	gcc -c trans.c
-check : check.c
-	gcc -c check.c
-lex : lexem.c
+myas :lexem.o check.o trans.o main.o
+	gcc -o myas main.o lexem.o check.o trans.o -lm
+lexem.o: lexem.c
 	gcc -c lexem.c
-myas :
-	gcc -o myas main.o lexem.o  check.o trans.o
+check.o : check.c
+	gcc -c check.c
+trans.o : trans.c
+	gcc -c trans.c
+main.o : main.o
+	gcc -c main.c
+clean:
+	rm -rf lexem.o check.o trans.o main.o assembler
+

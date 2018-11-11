@@ -2,10 +2,10 @@
 
 int is_valid(char *op, char *args)
 {
-	char left[255] = {NULL};
-	char right[255] = {NULL};
-	int left_lexem;
-	int left_lexem;
+	char *left;
+	char *right;
+	int left_lexem=0;
+	int right_lexem=0;
 	//printf("if valid, return 1\n");
 	//printf("otherwise, return 0\n");
 
@@ -15,17 +15,17 @@ int is_valid(char *op, char *args)
     /*  							*/
 	/********************************/
 	left = strtok(args,",");
-	strcpy(right,args);
+	right = strtok(NULL,",");
 	left_lexem = lex(left);
 	right_lexem = lex(right);
-	if(left == mem && right == mem){
+	if(left_lexem == mem && right_lexem == mem){
 		return 0;
 	}
-	else if(left == immediate && right == immediate){
+	else if(left_lexem == immediate && right_lexem == immediate){
 		return 0;
 	}
-	else if(right == immeditate){
+	else if(right_lexem == immediate){
 		return 0;
-	}
-	return 1;
+	}else
+		return 1;
 }
